@@ -9,7 +9,7 @@ import main.com.adventure.world.objects.keys.Key;
  * the Door to be created:
  * 1. without any inputs (i.e. default parameters)
  * 2. a level and an open/locked state
- *
+ * <p>
  * The default values for a door are level = 1 and isOpen = false
  */
 
@@ -17,34 +17,43 @@ public class Door implements Tangible {
 
     private boolean isOpen = false;
 
-    //TODO Add a level property
+    private int level = 1;
+    /**
+     * This is a javadoc comment.
+     * This is required, for some reason.
+     */
+    public Door() {
+    }
 
-    //TODO Add a default (i.e. no params) constructor here
 
-    //TODO Add a constructor that takes an isOpen and level and saves both
+    /**
+     * This is a javadoc comment.
+     * This is required, for some reason.
+     * @param isOpen - returns Open.
+     * @param level - returns level.
+     */
+    public Door(boolean isOpen, int level) {
+
+        this.isOpen = isOpen;
+        this.level = level;
+    }
+
 
     private boolean isKeyValid(Key key) {
-        //TODO Update doorLevel so it references the level of this door
-        int doorLevel = -1;
 
-        return key != null && key.getLevel() == doorLevel;
+        int doorLevel = this.level;
+
+        return key.getLevel() == doorLevel;
     }
 
     public boolean isOpen() {
+
         return isOpen;
     }
 
-    /**
-     * Sets the isOpen state.
-     * @param newOpenState - the value to save to the isOpen property
-     */
     public void setIsOpen(boolean newOpenState) {
         this.isOpen = newOpenState;
     }
-
-
-
-
 
 
     //******IGNORE THE CODE BELOW******//

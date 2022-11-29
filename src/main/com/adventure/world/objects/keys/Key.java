@@ -5,39 +5,76 @@ import main.com.adventure.world.objects.Tangible;
 /**
  * A key opens a locked door. More specifically, keys work only on doors that share their level.
  * For example, if a key is level 1, it can only open doors that are also level 1.
- *
- * A key's level cannot change once the object is instantiated. You should create the following constructors that take
+ * A key's level cannot change once the object is instantiated.
+ * You should create the following constructors that take
  * the following parameters:
  * 1. without any inputs (i.e. default parameters)
  * 2. a level (int)
- * 3. a level (int) and a name (string)
+ * 3. a level (int) and a name (string).
  *
- * The default values for a door are level = 1 and name = "key"
+ * <p>The default values for a door are level = 1 and name = "key"
  */
 
 public class Key implements Tangible {
 
-    //TODO variable for level and name needed here
+    private int level;
+    private String name;
 
-    //TODO Add default (i.e. no params) constructor here
+    /**
+     * This is a javadoc comment.
+     * This is required, for some reason.
+     */
+    public Key() {
+        level = 1;
+        name = "key";
 
-    //TODO add constructor that takes a level, and saves it
 
-    //TODO add constructor that takes a level and name, and saves it
+        /**
+         * This is a javadoc comment.
+         * This is required, for some reason.
+         * @param Key - returns key.
+         * @param level - returns level.
+         */
+    }
+
+    /**
+     * This is a javadoc comment.
+     * This is required, for some reason.
+     */
+
+    /**
+     * This is a javadoc comment.
+     * This is required, for some reason.
+     * @param level - returns level.
+     */
+    public Key(int level) {
+
+        this.level = level;
+    }
+
+
+    /**
+     * This is a javadoc comment.
+     * This is required, for some reason.
+     * @param level - returns level.
+     * @param name - returns name.
+     */
+
+    public Key(int level, String name) {
+        this.level = level;
+        this.name = name;
+    }
 
     public int getLevel() {
-        //TODO Fix this so it references the level property instead of 0
-        return 0;
+
+        return level;
     }
 
-    //TODO Fix this so it references the name property instead of "key"
     @Override
     public String getName() {
-        return "key";
+
+        return name;
     }
-
-
-
 
 
     //******IGNORE THE CODE BELOW******//
@@ -54,7 +91,8 @@ public class Key implements Tangible {
     }
 
     @Override
-    public void useItem(Tangible initiator) { /* intentionally left blank */ }
+    public void useItem(Tangible initiator) {
+    }
 
     @Override
     public void use() {

@@ -1,16 +1,24 @@
 package main.com.adventure.world.objects.keys;
 
+/**
+ * This is a javadoc comment.
+ * This is required, for some reason.
+ */
 public class KeyFactory {
+
+    int level;
+    String name;
 
     /**
      * Creates a key based on the given params.
+     *
      * @param level - the key's level
-     * @param name - the key's name
+     * @param name  - the key's name
      * @return a key
      */
     public static Key buildKey(int level, String name) {
-        //TODO Pass level and name into the key constructor when the proper constructor is built
-        Key key = new Key();
-        return key;
+
+        Key newKey = new Key(level, name);
+        return newKey;
     }
 }

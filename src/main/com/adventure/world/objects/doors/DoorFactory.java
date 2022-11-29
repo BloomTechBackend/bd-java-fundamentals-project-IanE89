@@ -1,17 +1,21 @@
 package main.com.adventure.world.objects.doors;
 
+/**
+ * This is a javadoc comment.
+ * This is required, for some reason.
+ */
 public class DoorFactory {
 
     /**
      * Creates a door based on the given params.
+     *
      * @param isOpen - the door's open state
-     * @param level - the door's level
+     * @param level  - the door's level
      * @return a door
      */
     public static Door buildDoor(boolean isOpen, int level) {
-        //TODO Pass the isOpen and level parameters into the door constructor when it's available
-        Door door = new Door();
 
-        return door;
+        Door newDoor = new Door(isOpen, level);
+        return newDoor;
     }
 }

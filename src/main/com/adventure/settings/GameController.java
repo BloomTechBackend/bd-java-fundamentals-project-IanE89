@@ -1,5 +1,4 @@
 package main.com.adventure.settings;
-
 import main.com.adventure.CombatController;
 import main.com.adventure.GameInputProcessor;
 import main.com.adventure.player.Player;
@@ -17,6 +16,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * This is a javadoc comment.
+ * This is required, for some reason.
+ */
 public class GameController {
 
     private final Player player = new Player();
@@ -43,7 +46,7 @@ public class GameController {
             if (player.canOpenDoor()) {
                 System.out.println("You have the power to open the door! You go through!");
             } else {
-                System.out.println("Eh, you don't have the power to open a door. Not much of an adventurer...");
+                System.out.println("Eh, you don't have the power to " + "open a door. Not much of an adventurer...");
             }
             gameOver();
         } else {
@@ -91,7 +94,7 @@ public class GameController {
                 System.out.println("You can't use " + item.getName() + " on " + receiver.getName());
             }
         } else {
-            //single item
+
             Tangible item = getCurrentScene().getItem(itemName);
             if (item != null) {
                 item.use();
@@ -121,24 +124,38 @@ public class GameController {
         getNextCommand();
     }
 
+
     private void applyCommand(Command command) {
-        if (command.getVerb().equalsIgnoreCase(CommandConstants.LOOK)) {
-            describeCurrentScene();
-        } else if (command.getVerb().equalsIgnoreCase(CommandConstants.MOVE)) {
-            move(command.getObjectName());
-        } else if (command.getVerb().equalsIgnoreCase(CommandConstants.HELP)) {
-            printHelp();
-        } else if (command.getVerb().equalsIgnoreCase(CommandConstants.USE)) {
-            use(command.getObjectName());
-        } else if (command.getVerb().equalsIgnoreCase(CommandConstants.DIG)) {
-            dig();
-        } else if (command.getVerb().equalsIgnoreCase(CommandConstants.EXAMINE)) {
-            examine(command.getObjectName());
-        } else if (command.getVerb().equalsIgnoreCase(CommandConstants.TAKE)) {
-            take(command.getObjectName());
-        } else {
-            printInvalidCommand();
+        switch (command.getVerb()) {
+            case LOOK:
+                describeCurrentScene();
+                break;
+            case MOVE:
+                move(command.getObjectName());
+                break;
+            case HELP:
+                printHelp();
+                break;
+            case USE:
+                use(command.getObjectName());
+                break;
+            case DIG:
+                dig();
+                break;
+            case EXAMINE:
+                examine(command.getObjectName());
+                break;
+            case TAKE:
+                take(command.getObjectName());
+                break;
+            case FIGHT:
+            case INVENTORY:
+                break;
+            default:
+                printInvalidCommand();
+                break;
         }
+
     }
 
     private void startCombat() {
@@ -223,8 +240,8 @@ public class GameController {
         String name = scanner.next();
         player.setName(name);
         if (player.getName().isEmpty()) {
-            System.out.println("Looks like I didn't save the name. Something is wrong with either the setName or " +
-                    "the getName function.");
+            System.out.println("Looks like I didn't save the name. " +
+                    "Something is wrong " + "with either the setName or " + "the getName function.");
             gameOver();
         } else {
             System.out.println("Welcome " + player.getName() + "!");

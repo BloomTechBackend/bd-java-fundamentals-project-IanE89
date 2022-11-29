@@ -2,12 +2,14 @@ package main.com.adventure;
 
 import main.com.adventure.settings.Command;
 import main.com.adventure.settings.CommandConstants;
+import main.com.adventure.settings.CommandVerb;
 
 import java.util.Locale;
 import java.util.Scanner;
 
 public class GameInputProcessor {
 
+    //declare variables
     private String verb = "";
     private String objectName = "";
 
@@ -17,9 +19,11 @@ public class GameInputProcessor {
      * @return the response from the user.
      */
     public String prompt() {
+
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter your next command:");
+        System.out.print("Enter your next command: ");
         String myCommand = input.nextLine();
+
         input.close();
         return myCommand;
     }
@@ -37,12 +41,11 @@ public class GameInputProcessor {
      * @return - the Command object with the proper verb and blank object
      */
     private Command buildSimpleCommand(String input) {
-        int spaceIndex;
-        String myObjectName = "";
-        spaceIndex = input.indexOf(" ");
-        String myVerb = input.substring(0, spaceIndex);
-        verb = myVerb;
-        return new Command(myVerb, "");
+
+
+        CommandVerb cv = CommandVerb.getVerb(input);
+
+        return new Command(cv, "");
     }
 
     /**
@@ -65,28 +68,34 @@ public class GameInputProcessor {
      * @return - the Command object with the proper verb and object
      */
     private Command buildCommandWithObject(String input) {
+
         int spaceIndex;
         String myVerb = "";
         String myObjectName = "";
+
         spaceIndex = input.indexOf(" ");
 
         if (spaceIndex == -1) {
             myObjectName = "";
             myVerb = input;
-            String cv = myVerb;
+            CommandVerb cv = CommandVerb.getVerb(myVerb);
             return new Command(cv, myObjectName);
         }
 
         if (spaceIndex == 0) {
             myObjectName = "";
-            String cv = myVerb;
+            CommandVerb cv = CommandVerb.getVerb(myVerb);
             return new Command(cv, myObjectName);
         }
 
         myVerb = input.substring(0, spaceIndex);
         myObjectName = input.substring(spaceIndex + 1);
-        String cv = myVerb;
-        return new Command(myVerb, myObjectName);
+
+
+        CommandVerb cv = CommandVerb.getVerb(myVerb);
+        return new Command(cv, myObjectName);
+
+
     }
 
 
@@ -107,8 +116,7 @@ public class GameInputProcessor {
         if (normalizedInput.contains(CommandConstants.MOVE) ||
                 normalizedInput.contains(CommandConstants.USE) ||
                 normalizedInput.contains(CommandConstants.TAKE) ||
-                normalizedInput.contains(CommandConstants.EXAMINE)
-        ) {
+                normalizedInput.contains(CommandConstants.EXAMINE)) {
             return buildCommandWithObject(normalizedInput);
         } else {
             return buildSimpleCommand(normalizedInput);

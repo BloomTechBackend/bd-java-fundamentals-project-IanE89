@@ -6,6 +6,10 @@ import main.com.adventure.world.objects.Tangible;
 import main.com.adventure.world.objects.Weapon;
 import main.com.adventure.world.objects.keys.Key;
 
+/**
+ * This is a javadoc comment.
+ * This is required, for some reason.
+ */
 public class Player {
 
     public int level = 5;
@@ -14,6 +18,7 @@ public class Player {
     private Shovel shovel;
     private int power = 1;
     private int health = 10;
+
     private String name;
 
     /**
@@ -26,6 +31,7 @@ public class Player {
     public void setName(String newName) {
         name = newName;
         System.out.println("Your name is now " + name);
+
     }
 
     /**
@@ -72,13 +78,17 @@ public class Player {
      * @return true if the move is executed. Otherwise, false.
      */
     public boolean move(String direction, boolean isValidDirection) {
+
         if (isValidDirection) {
+
             if (direction.equals("EAST")) {
                 currentLocationIndex++;
             }
+
             if (direction.equals("WEST")) {
                 currentLocationIndex--;
             }
+
             return true;
         } else {
             System.out.println(direction + " is not a valid direction");
